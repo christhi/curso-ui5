@@ -6,6 +6,8 @@ class ZCL_ZLOJA_DPC_EXT definition
 public section.
 protected section.
 
+  methods CLIENTESET_GET_ENTITY
+    redefinition .
   methods CLIENTESET_GET_ENTITYSET
     redefinition .
   methods VENDASET_GET_ENTITYSET
@@ -16,6 +18,35 @@ ENDCLASS.
 
 
 CLASS ZCL_ZLOJA_DPC_EXT IMPLEMENTATION.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Protected Method ZCL_ZLOJA_DPC_EXT->CLIENTESET_GET_ENTITY
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_ENTITY_NAME                 TYPE        STRING
+* | [--->] IV_ENTITY_SET_NAME             TYPE        STRING
+* | [--->] IV_SOURCE_NAME                 TYPE        STRING
+* | [--->] IT_KEY_TAB                     TYPE        /IWBEP/T_MGW_NAME_VALUE_PAIR
+* | [--->] IO_REQUEST_OBJECT              TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITY(optional)
+* | [--->] IO_TECH_REQUEST_CONTEXT        TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITY(optional)
+* | [--->] IT_NAVIGATION_PATH             TYPE        /IWBEP/T_MGW_NAVIGATION_PATH
+* | [<---] ER_ENTITY                      TYPE        ZCL_ZLOJA_MPC=>TS_CLIENTE
+* | [<---] ES_RESPONSE_CONTEXT            TYPE        /IWBEP/IF_MGW_APPL_SRV_RUNTIME=>TY_S_MGW_RESPONSE_ENTITY_CNTXT
+* | [!CX!] /IWBEP/CX_MGW_BUSI_EXCEPTION
+* | [!CX!] /IWBEP/CX_MGW_TECH_EXCEPTION
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD CLIENTESET_GET_ENTITY.
+
+    READ TABLE IT_KEY_TAB
+      WITH KEY NAME = 'ID'
+      REFERENCE INTO DATA(LV_REF_KEY).
+
+    SELECT SINGLE *
+    FROM ZTAB_CLIENTES
+    INTO CORRESPONDING FIELDS OF ER_ENTITY
+    WHERE ID EQ LV_REF_KEY->VALUE.
+
+  ENDMETHOD.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
