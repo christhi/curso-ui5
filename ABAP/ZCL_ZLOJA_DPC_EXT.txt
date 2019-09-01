@@ -37,9 +37,29 @@ CLASS ZCL_ZLOJA_DPC_EXT IMPLEMENTATION.
 * +--------------------------------------------------------------------------------------</SIGNATURE>
   METHOD CLIENTESET_GET_ENTITYSET.
 
+    DATA:
+            LR_NOME TYPE RANGE OF ZTAB_CLIENTES-NOME.
+
+    "Montagem do Range de Filtros
+    LOOP AT IT_FILTER_SELECT_OPTIONS REFERENCE INTO DATA(LV_REF_FILTER). "tabela contendo os campos de tela (parametros) e respectiva lista de valores
+
+      CASE LV_REF_FILTER->PROPERTY.
+
+        WHEN 'Nome'.
+
+          LOOP AT LV_REF_FILTER->SELECT_OPTIONS REFERENCE INTO DATA(LV_REF_SELECT_OPTIONS). "loop na tabela de valores do parametro
+            APPEND INITIAL LINE TO LR_NOME REFERENCE INTO DATA(LV_REF_R_NOME).
+            MOVE-CORRESPONDING LV_REF_SELECT_OPTIONS->* TO LV_REF_R_NOME->*.
+          ENDLOOP.
+
+      ENDCASE.
+
+    ENDLOOP.
+
     SELECT *
         FROM ZTAB_CLIENTES
-        INTO CORRESPONDING FIELDS OF TABLE ET_ENTITYSET.
+        INTO CORRESPONDING FIELDS OF TABLE ET_ENTITYSET
+        WHERE NOME IN LR_NOME.
 
   ENDMETHOD.
 ENDCLASS.
