@@ -8,7 +8,9 @@ protected section.
 
   methods CLIENTESET_GET_ENTITYSET
     redefinition .
-private section.
+  methods VENDASET_GET_ENTITYSET
+    redefinition .
+  PRIVATE SECTION.
 ENDCLASS.
 
 
@@ -111,6 +113,107 @@ CLASS ZCL_ZLOJA_DPC_EXT IMPLEMENTATION.
     ENDIF.
 
   ENDIF.
+
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Protected Method ZCL_ZLOJA_DPC_EXT->VENDASET_GET_ENTITYSET
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_ENTITY_NAME                 TYPE        STRING
+* | [--->] IV_ENTITY_SET_NAME             TYPE        STRING
+* | [--->] IV_SOURCE_NAME                 TYPE        STRING
+* | [--->] IT_FILTER_SELECT_OPTIONS       TYPE        /IWBEP/T_MGW_SELECT_OPTION
+* | [--->] IS_PAGING                      TYPE        /IWBEP/S_MGW_PAGING
+* | [--->] IT_KEY_TAB                     TYPE        /IWBEP/T_MGW_NAME_VALUE_PAIR
+* | [--->] IT_NAVIGATION_PATH             TYPE        /IWBEP/T_MGW_NAVIGATION_PATH
+* | [--->] IT_ORDER                       TYPE        /IWBEP/T_MGW_SORTING_ORDER
+* | [--->] IV_FILTER_STRING               TYPE        STRING
+* | [--->] IV_SEARCH_STRING               TYPE        STRING
+* | [--->] IO_TECH_REQUEST_CONTEXT        TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITYSET(optional)
+* | [<---] ET_ENTITYSET                   TYPE        ZCL_ZLOJA_MPC=>TT_VENDA
+* | [<---] ES_RESPONSE_CONTEXT            TYPE        /IWBEP/IF_MGW_APPL_SRV_RUNTIME=>TY_S_MGW_RESPONSE_CONTEXT
+* | [!CX!] /IWBEP/CX_MGW_BUSI_EXCEPTION
+* | [!CX!] /IWBEP/CX_MGW_TECH_EXCEPTION
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD VENDASET_GET_ENTITYSET.
+
+    DATA:
+            LR_NOME TYPE RANGE OF ZTAB_CLIENTES-NOME.
+
+
+    "Montagem do Range de Filtros
+    LOOP AT IT_FILTER_SELECT_OPTIONS REFERENCE INTO DATA(LV_REF_FILTER). "tabela contendo os campos de tela (parametros) e respectiva lista de valores
+
+      CASE LV_REF_FILTER->PROPERTY.
+
+        WHEN 'Descricao'.
+
+          LOOP AT LV_REF_FILTER->SELECT_OPTIONS REFERENCE INTO DATA(LV_REF_SELECT_OPTIONS). "loop na tabela de valores do parametro
+            APPEND INITIAL LINE TO LR_NOME REFERENCE INTO DATA(LV_REF_R_NOME).
+            MOVE-CORRESPONDING LV_REF_SELECT_OPTIONS->* TO LV_REF_R_NOME->*.
+          ENDLOOP.
+
+      ENDCASE.
+
+    ENDLOOP.
+
+    "ordenamento
+    LOOP AT IT_ORDER REFERENCE INTO DATA(LV_REF_ORDER)."tabela de campos a serem ordenados
+
+      CASE LV_REF_ORDER->PROPERTY.
+        WHEN 'DataCriacao'.
+          DATA(LV_DB_FIELD) = 'DATA_CRIACAO'.
+      ENDCASE.
+
+      DATA(LV_ORDER) = LV_REF_ORDER->ORDER.
+
+      TRANSLATE LV_ORDER TO UPPER CASE.
+
+      CASE LV_ORDER.
+        WHEN 'DESC'.
+          DATA(LV_DB_ORDER) = 'DESCENDING'.
+        WHEN OTHERS.
+          LV_DB_ORDER = 'ASCENDING'.
+      ENDCASE.
+
+      CONCATENATE
+        LV_DB_FIELD
+        LV_DB_ORDER
+      INTO
+        DATA(LV_ORDER_BY)
+      SEPARATED BY
+        SPACE.
+
+    ENDLOOP.
+
+    IF IO_TECH_REQUEST_CONTEXT->HAS_COUNT( ) = ABAP_TRUE.
+
+      SELECT COUNT(*)
+      FROM ZTAB_VENDAS_CAB
+      INTO @DATA(LV_COUNT)
+      WHERE DESCRICAO IN @LR_NOME.
+
+      ES_RESPONSE_CONTEXT-COUNT = LV_COUNT.
+
+    ELSE.
+
+      DATA(LV_UP_TO) = IS_PAGING-TOP + IS_PAGING-SKIP.
+
+      SELECT *
+      FROM ZTAB_VENDAS_CAB
+      UP TO LV_UP_TO ROWS
+
+      INTO CORRESPONDING FIELDS OF TABLE ET_ENTITYSET
+      WHERE DESCRICAO IN LR_NOME
+      ORDER BY (LV_ORDER_BY).
+
+      IF IS_PAGING-SKIP > 0.
+        DELETE ET_ENTITYSET FROM 1 TO IS_PAGING-SKIP.
+      ENDIF.
+
+    ENDIF.
+
 
   ENDMETHOD.
 ENDCLASS.
