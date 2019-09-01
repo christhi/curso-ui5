@@ -21,7 +21,7 @@
 					path: '/ClienteSet',
 					sorter: {
 						path: 'Nome',
-						descending: false
+						descending: true
 					}
 				}"
 				noDataText="{worklistView>/tableNoDataText}"

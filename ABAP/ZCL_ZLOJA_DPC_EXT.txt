@@ -56,10 +56,40 @@ CLASS ZCL_ZLOJA_DPC_EXT IMPLEMENTATION.
 
     ENDLOOP.
 
+    "ordenamento
+    LOOP AT IT_ORDER REFERENCE INTO DATA(LV_REF_ORDER)."tabela de campos a serem ordenados
+
+      CASE LV_REF_ORDER->PROPERTY.
+        WHEN 'Nome'.
+          DATA(LV_DB_FIELD) = 'NOME'.
+      ENDCASE.
+
+      DATA(LV_ORDER) = LV_REF_ORDER->ORDER.
+
+      TRANSLATE LV_ORDER TO UPPER CASE.
+
+      CASE LV_ORDER.
+        WHEN 'DESC'.
+          DATA(LV_DB_ORDER) = 'DESCENDING'.
+        WHEN OTHERS.
+          LV_DB_ORDER = 'ASCENDING'.
+      ENDCASE.
+
+      CONCATENATE
+        LV_DB_FIELD
+        LV_DB_ORDER
+      INTO
+        DATA(LV_ORDER_BY)
+      SEPARATED BY
+        SPACE.
+
+    ENDLOOP.
+
     SELECT *
         FROM ZTAB_CLIENTES
         INTO CORRESPONDING FIELDS OF TABLE ET_ENTITYSET
-        WHERE NOME IN LR_NOME.
+        WHERE NOME IN LR_NOME
+        ORDER BY (LV_ORDER_BY).
 
   ENDMETHOD.
 ENDCLASS.
