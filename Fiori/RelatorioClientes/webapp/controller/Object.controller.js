@@ -3,8 +3,9 @@ sap.ui.define([
 	"./BaseController",
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/routing/History",
-	"../model/formatter"
-], function (BaseController, JSONModel, History, formatter) {
+	"../model/formatter",
+	"sap/m/MessageToast",
+], function (BaseController, JSONModel, History, formatter, MessageToast) {
 	"use strict";
 
 	return BaseController.extend("cromos.it.RelatorioClientes.controller.Object", {
@@ -44,6 +45,46 @@ sap.ui.define([
 					oViewModel.setProperty("/delay", iOriginalBusyDelay);
 				}
 			);
+		},
+		
+		onGravar: function (oEvent) {
+			var m = this.getView().getModel();
+
+			if (!m.hasPendingChanges()){
+				MessageToast.show("Sem mudanças para gravar.");
+				return;
+			}
+		
+			this.getView().setBusy(true);
+
+			m.submitChanges({
+				success: function (oData) {
+					
+					MessageToast.show("Mudanças realizadas.");
+					this.getView().setBusy(false);
+
+				}.bind(this),
+				
+				error: function (oData) {
+
+					MessageToast.show("Aconteceu um erro.");
+					console.error(oData);
+					this.getView().setBusy(false);
+				},
+			});
+
+		},
+
+		onCancelar: function (oEvent) {
+
+			var m = this.getView().getModel();
+
+			if (!m.hasPendingChanges()){
+				MessageToast.show("Sem mudanças para cancelar.");
+				return;
+			}
+
+			m.resetChanges();
 		},
 
 		/* =========================================================== */
