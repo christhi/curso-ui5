@@ -35,6 +35,9 @@
 				width="auto"
 				items="{
 					path : 'vendas',
+					parameters:{
+						expand: 'cliente'
+					},
 					sorter: {
 						path: 'DataCriacao',
 						descending: true
@@ -44,6 +47,7 @@
 				<ObjectListItem
 					title="{Descricao}"
 					number="{ValorLiquido}"
+					numberUnit="{myModel>/currency}"
 					numberState="{=	${ValorLiquido} > 500 ? 'Error' : 'Success' }"
 					>
 					
@@ -60,6 +64,7 @@
                             	}
                             }"
                             />
+                        <ObjectAttribute text="{cliente/Email}" />
 					</attributes>
 				</ObjectListItem>
 			</items>

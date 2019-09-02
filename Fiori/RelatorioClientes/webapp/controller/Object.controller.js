@@ -30,6 +30,11 @@ sap.ui.define([
 				});
 
 			this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
+			
+			var oMyModel = new JSONModel({
+				currency: "BRL"
+			});
+			this.getView().setModel(oMyModel, "myModel");
 
 			// Store original busy indicator delay, so it can be restored later on
 			iOriginalBusyDelay = this.getView().getBusyIndicatorDelay();
@@ -94,6 +99,9 @@ sap.ui.define([
 
 			this.getView().bindElement({
 				path: sObjectPath,
+				parameters: {
+					expand: "vendas"
+				},
 				events: {
 					change: this._onBindingChange.bind(this),
 					dataRequested: function () {
