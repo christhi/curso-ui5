@@ -69,10 +69,7 @@
 			},
 			"": {
 				"dataSource": "mainService",
-				"preload": true,
-				"settings": {
-		            "defaultBindingMode": "TwoWay"
-		          }
+				"preload": true
 			}
 		},
 		"routing": {
