@@ -25,6 +25,45 @@
 			<semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
 		</semantic:sendEmailAction>
 
+		<List
+			growing="true"
+			growingScrollToLoad="true"
+			growingThreshold="20"
+			id="vendasListCliente"
+				headerText="{i18n>vendaListCliente}"
+				class="sapUiResponsiveMargin"
+				width="auto"
+				items="{
+					path : 'vendas',
+					sorter: {
+						path: 'DataCriacao',
+						descending: true
+					}
+				}">
+			<items>
+				<ObjectListItem
+					title="{Descricao}"
+					number="{ValorLiquido}"
+					numberState="{=	${ValorLiquido} > 500 ? 'Error' : 'Success' }"
+					>
+					
+					<attributes>
+						<ObjectAttribute text="{IDVenda}" />
+						<ObjectAttribute 
+						text="{
+							path: 'DataCriacao',
+							type: 'sap.ui.model.type.Date',
+                            	formatOptions: 
+                            	{              
+                            		style: 'short',
+                                	UTC: true
+                            	}
+                            }"
+                            />
+					</attributes>
+				</ObjectListItem>
+			</items>
+		</List>
 
 	</semantic:SemanticPage>
 
