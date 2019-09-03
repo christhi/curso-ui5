@@ -6,6 +6,8 @@ class ZCL_ZLOJA_DPC_EXT definition
 public section.
 protected section.
 
+  methods CLIENTESET_DELETE_ENTITY
+    redefinition .
   methods CLIENTESET_GET_ENTITY
     redefinition .
   methods CLIENTESET_GET_ENTITYSET
@@ -14,7 +16,7 @@ protected section.
     redefinition .
   methods VENDASET_GET_ENTITYSET
     redefinition .
-  methods CLIENTESET_DELETE_ENTITY
+  methods CLIENTESET_CREATE_ENTITY
     redefinition .
   PRIVATE SECTION.
 ENDCLASS.
@@ -22,6 +24,38 @@ ENDCLASS.
 
 
 CLASS ZCL_ZLOJA_DPC_EXT IMPLEMENTATION.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Protected Method ZCL_ZLOJA_DPC_EXT->CLIENTESET_CREATE_ENTITY
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_ENTITY_NAME                 TYPE        STRING
+* | [--->] IV_ENTITY_SET_NAME             TYPE        STRING
+* | [--->] IV_SOURCE_NAME                 TYPE        STRING
+* | [--->] IT_KEY_TAB                     TYPE        /IWBEP/T_MGW_NAME_VALUE_PAIR
+* | [--->] IO_TECH_REQUEST_CONTEXT        TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITY_C(optional)
+* | [--->] IT_NAVIGATION_PATH             TYPE        /IWBEP/T_MGW_NAVIGATION_PATH
+* | [--->] IO_DATA_PROVIDER               TYPE REF TO /IWBEP/IF_MGW_ENTRY_PROVIDER(optional)
+* | [<---] ER_ENTITY                      TYPE        ZCL_ZLOJA_MPC=>TS_CLIENTE
+* | [!CX!] /IWBEP/CX_MGW_BUSI_EXCEPTION
+* | [!CX!] /IWBEP/CX_MGW_TECH_EXCEPTION
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  method CLIENTESET_CREATE_ENTITY.
+
+DATA:
+          LS_CLIENTE TYPE ZTAB_CLIENTES.
+
+    IO_DATA_PROVIDER->READ_ENTRY_DATA(
+      IMPORTING
+        ES_DATA = ER_ENTITY
+    ).
+
+    MOVE-CORRESPONDING ER_ENTITY TO LS_CLIENTE.
+
+    INSERT ZTAB_CLIENTES FROM LS_CLIENTE.
+
+
+  endmethod.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
