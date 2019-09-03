@@ -2,6 +2,8 @@
 	controllerName="cromos.it.RelatorioClientes.controller.Object"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
 	xmlns:semantic="sap.f.semantic">
 
 	<semantic:SemanticPage
@@ -9,6 +11,7 @@
 		headerPinnable="false"
 		toggleHeaderOnTitleClick="false"
 		busy="{objectView>/busy}"
+		showFooter="true"
 		busyIndicatorDelay="{objectView>/delay}">
 
 		<semantic:titleHeading>
@@ -24,6 +27,34 @@
 		<semantic:sendEmailAction>
 			<semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
 		</semantic:sendEmailAction>
+		
+		<l:VerticalLayout width="100%">
+				<f:SimpleForm
+					editable="true"
+					layout="ResponsiveGridLayout"
+					labelSpanXL="3"
+					labelSpanL="3"
+					labelSpanM="3"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="4"
+					emptySpanL="4"
+					emptySpanM="4"
+					emptySpanS="0"
+					columnsXL="1"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false"
+					>
+					<Label text="ID" />
+					<Text 
+						text="{ID}" 
+						/>
+					<Label text="Telefone" />
+					<Input  
+						value="{Telefone}" 
+						/>
+				</f:SimpleForm>					
 
 		<List
 			growing="true"
@@ -69,6 +100,14 @@
 				</ObjectListItem>
 			</items>
 		</List>
+		
+		</l:VerticalLayout>
+
+		<!-- Custom Footer Content-->
+		<semantic:footerCustomActions>
+			<Button type="Accept" text="Gravar" press="onGravar" />
+			<Button type="Reject" text="Cancelar" press="onCancelar "/>
+		</semantic:footerCustomActions>		
 
 	</semantic:SemanticPage>
 
