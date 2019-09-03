@@ -4,8 +4,9 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"../model/formatter",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function (BaseController, JSONModel, formatter, Filter, FilterOperator) {
+	"sap/ui/model/FilterOperator",
+	"sap/m/MessageToast"
+], function (BaseController, JSONModel, formatter, Filter, FilterOperator, MessageToast) {
 	"use strict";
 
 	return BaseController.extend("cromos.it.RelatorioClientes.controller.Worklist", {
@@ -49,6 +50,19 @@ sap.ui.define([
 			oTable.attachEventOnce("updateFinished", function(){
 				// Restore original busy indicator delay for worklist's table
 				oViewModel.setProperty("/tableBusyDelay", iOriginalBusyDelay);
+			});
+		},
+		onClienteDelete: function(oEvent) {
+			var oItem = oEvent.getParameter("listItem"),
+				sPath = oItem.getBindingContext().getPath();
+
+			this.getView().getModel().remove(sPath,{
+				success: function(){
+					MessageToast.show('Cliente eliminado com sucesso.');
+				}.bind(this),
+				error: function(e){
+					console.error(e);
+				}.bind(this),
 			});
 		},
 
