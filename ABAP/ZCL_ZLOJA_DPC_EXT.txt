@@ -10,9 +10,11 @@ protected section.
     redefinition .
   methods CLIENTESET_GET_ENTITYSET
     redefinition .
+  methods CLIENTESET_UPDATE_ENTITY
+    redefinition .
   methods VENDASET_GET_ENTITYSET
     redefinition .
-  methods CLIENTESET_UPDATE_ENTITY
+  methods CLIENTESET_DELETE_ENTITY
     redefinition .
   PRIVATE SECTION.
 ENDCLASS.
@@ -20,6 +22,35 @@ ENDCLASS.
 
 
 CLASS ZCL_ZLOJA_DPC_EXT IMPLEMENTATION.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Protected Method ZCL_ZLOJA_DPC_EXT->CLIENTESET_DELETE_ENTITY
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_ENTITY_NAME                 TYPE        STRING
+* | [--->] IV_ENTITY_SET_NAME             TYPE        STRING
+* | [--->] IV_SOURCE_NAME                 TYPE        STRING
+* | [--->] IT_KEY_TAB                     TYPE        /IWBEP/T_MGW_NAME_VALUE_PAIR
+* | [--->] IO_TECH_REQUEST_CONTEXT        TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITY_D(optional)
+* | [--->] IT_NAVIGATION_PATH             TYPE        /IWBEP/T_MGW_NAVIGATION_PATH
+* | [!CX!] /IWBEP/CX_MGW_BUSI_EXCEPTION
+* | [!CX!] /IWBEP/CX_MGW_TECH_EXCEPTION
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD CLIENTESET_DELETE_ENTITY.
+
+    DATA: LV_CLIENTE TYPE ZTAB_VENDAS_CAB-CLIENTE_ID.
+
+    READ TABLE IT_KEY_TAB
+      WITH KEY NAME = 'ID'
+      REFERENCE INTO DATA(LV_REF_KEY).
+
+    LV_CLIENTE = LV_REF_KEY->VALUE.
+
+    DELETE
+    FROM ZTAB_CLIENTES
+    WHERE ID EQ LV_CLIENTE.
+
+  ENDMETHOD.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+
