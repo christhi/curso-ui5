@@ -22,7 +22,7 @@
 				items="{
 					path: '/ClienteSet',
 					sorter: {
-						path: 'Nome',
+						path: 'ID',
 						descending: true
 					}
 				}"
@@ -36,6 +36,7 @@
 					<Toolbar>
 						<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
 						<ToolbarSpacer />
+						<Button text="Criar" type="Emphasized" press="onCriarCliente" />
 						<SearchField
 							id="searchField"
 							tooltip="{i18n>worklistSearchTooltip}"

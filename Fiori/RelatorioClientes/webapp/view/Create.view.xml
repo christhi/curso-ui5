@@ -1,0 +1,64 @@
+<mvc:View
+    controllerName="cromos.it.RelatorioClientes.controller.Create"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Page
+		title="{i18n>detailPageTitle}"
+		showNavButton="true"
+		navButtonPress=".onNavBack"
+		floatingFooter="true">
+		<ObjectHeader
+			intro="{ID}"
+			title="{Nome}"/>
+		<f:SimpleForm
+			editable="true"
+			layout="ResponsiveGridLayout"
+			title="Invoice"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false"
+			>
+			
+			<Label text="Nome" />
+			<Input valueLiveUpdate="true"
+				value="{Nome}" 
+				maxLength="40"
+				/>
+			<Label text="UF" />
+			<Input 
+				value="{UF}" 
+				/>
+			<Label text="Email" />
+			<Input
+				value="{Email}" 
+				/>
+			<Label text="Telefone" />
+			<Input 
+				value="{Telefone}" 
+				/>
+				
+			
+		</f:SimpleForm>
+
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button type="Accept" text="Gravar" press="onGravar" />
+				<Button type="Reject" text="Cancelar" press="onCancelar "/>
+			</OverflowToolbar>
+		</footer>
+
+	</Page>
+</mvc:View> 

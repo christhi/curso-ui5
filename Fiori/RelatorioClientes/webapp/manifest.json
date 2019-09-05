@@ -103,7 +103,12 @@
 					"target": [
 						"object"
 					]
-				}
+				},
+		        {
+		          "pattern": "create",
+		          "name": "create",
+		          "target": "create"
+		        }
 			],
 			"targets": {
 				"worklist": {
@@ -115,9 +120,14 @@
 				"object": {
 					"viewName": "Object",
 					"viewId": "object",
-					"viewLevel": 2,
+					"viewLevel": 3,
 					"title": "{i18n>objectViewTitle}"
 				},
+		        "create": {
+		          "viewId": "create",
+		          "viewName": "Create",
+		          "viewLevel": 2
+		        },
 				"objectNotFound": {
 					"viewName": "ObjectNotFound",
 					"viewId": "objectNotFound"

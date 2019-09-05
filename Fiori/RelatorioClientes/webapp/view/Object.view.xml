@@ -17,6 +17,14 @@
 		<semantic:titleHeading>
 			<Title text="{Nome}" />
 		</semantic:titleHeading>
+		
+		<!-- Title Breadcrumbs-->
+		<semantic:titleBreadcrumbs>
+			<Breadcrumbs>
+				<Link text="Voltar" press="onNavBack" />
+				
+			</Breadcrumbs>
+		</semantic:titleBreadcrumbs>
 
 		<semantic:headerContent>
 			<ObjectNumber

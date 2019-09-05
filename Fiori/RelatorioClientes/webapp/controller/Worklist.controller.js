@@ -65,6 +65,11 @@ sap.ui.define([
 				}.bind(this),
 			});
 		},
+	
+		onCriarCliente: function (oEvent) {
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.navTo("create", {});
+		},
 
 		/* =========================================================== */
 		/* event handlers                                              */
