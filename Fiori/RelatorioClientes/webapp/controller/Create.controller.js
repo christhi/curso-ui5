@@ -12,8 +12,14 @@ sap.ui.define([
 		onInit: function () {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("create").attachPatternMatched(this._onCreateMatched, this);
+			
+			var oViewModel = new JSONModel({
+				copies: 0
+			});
+			this.getView().setModel(oViewModel, "view");
 		},
 		_onCreateMatched: function (oEvent) {
+			this.getView().getModel("view").setProperty("/copies", 0);
 			var m = this.getView().getModel();
 			m.metadataLoaded().then(function(){
 				var oContext = m.createEntry('/ClienteSet',
@@ -50,6 +56,20 @@ sap.ui.define([
 			var m = this.getView().getModel();
 
 			this.getView().setBusy(true);
+			
+			var iCopies = this.getView().getModel("view").getProperty("/copies");
+			var oNewCliente = this.getView().getBindingContext().getObject();
+			
+			for (var i=0;i<iCopies; i++){
+				m.createEntry('/ClienteSet', {
+					properties: {
+						Nome: oNewCliente.Nome + " (Copia "+(i+1)+")",
+						UF: oNewCliente.UF,
+						Email: oNewCliente.Email,
+						Telefone: oNewCliente.Telefone,
+					}
+				});
+			}
 
 			m.submitChanges({
 				success: function (oData) {
