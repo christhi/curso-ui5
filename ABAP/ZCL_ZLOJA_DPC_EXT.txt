@@ -5,9 +5,11 @@ class ZCL_ZLOJA_DPC_EXT definition
 
 public section.
 
+  methods /IWBEP/IF_MGW_APPL_SRV_RUNTIME~CHANGESET_BEGIN
+    redefinition .
   methods /IWBEP/IF_MGW_APPL_SRV_RUNTIME~CHANGESET_END
     redefinition .
-  methods /IWBEP/IF_MGW_APPL_SRV_RUNTIME~CHANGESET_BEGIN
+  methods /IWBEP/IF_MGW_APPL_SRV_RUNTIME~EXECUTE_ACTION
     redefinition .
 protected section.
 
@@ -57,6 +59,58 @@ CLASS ZCL_ZLOJA_DPC_EXT IMPLEMENTATION.
     " assegurar a continuidade da operação do CHANGESET, realizando
     " o respetivos controles transacionais.
   endmethod.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZCL_ZLOJA_DPC_EXT->/IWBEP/IF_MGW_APPL_SRV_RUNTIME~EXECUTE_ACTION
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_ACTION_NAME                 TYPE        STRING(optional)
+* | [--->] IT_PARAMETER                   TYPE        /IWBEP/T_MGW_NAME_VALUE_PAIR(optional)
+* | [--->] IO_TECH_REQUEST_CONTEXT        TYPE REF TO /IWBEP/IF_MGW_REQ_FUNC_IMPORT(optional)
+* | [<---] ER_DATA                        TYPE REF TO DATA
+* | [!CX!] /IWBEP/CX_MGW_BUSI_EXCEPTION
+* | [!CX!] /IWBEP/CX_MGW_TECH_EXCEPTION
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD /IWBEP/IF_MGW_APPL_SRV_RUNTIME~EXECUTE_ACTION.
+
+    DATA: LS_ENTITY  TYPE ZCL_ZLOJA_MPC=>TS_CLIENTE,
+          LS_CLIENTE TYPE ZTAB_CLIENTES,
+          LV_STATUS  TYPE I.
+
+    CASE IV_ACTION_NAME.
+
+      WHEN 'EnviarEmail'.
+        "obtenção de valor do paramentro
+        READ TABLE IT_PARAMETER REFERENCE INTO DATA(LV_REF_PARAM)
+        WITH KEY NAME = 'ClienteID'.
+        "adição de logica customizada:
+        "exemplo: atualização de status
+        SELECT SINGLE * FROM ZTAB_CLIENTES INTO CORRESPONDING FIELDS OF LS_CLIENTE
+          WHERE ID EQ LV_REF_PARAM->VALUE.
+
+
+        CALL FUNCTION 'GENERAL_GET_RANDOM_INT'
+          EXPORTING
+            RANGE  = 9
+          IMPORTING
+            RANDOM = LV_STATUS.
+
+        LS_CLIENTE-STATUS = LV_STATUS.
+        UPDATE ZTAB_CLIENTES FROM LS_CLIENTE.
+
+        "devolve dados atualizados para front end
+        MOVE-CORRESPONDING ls_cliente to ls_entity.
+        COPY_DATA_TO_REF(
+        EXPORTING
+        IS_DATA = LS_ENTITY
+        CHANGING
+        CR_DATA = ER_DATA ).
+
+
+      WHEN OTHERS.
+    ENDCASE.
+
+  ENDMETHOD.
 
 
 * <SIGNATURE>---------------------------------------------------------------------------------------+

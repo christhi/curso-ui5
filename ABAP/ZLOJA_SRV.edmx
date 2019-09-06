@@ -44,6 +44,9 @@
 <End EntitySet="ClienteSet" Role="FromRole_ClienteToVendas"/>
 <End EntitySet="VendaSet" Role="ToRole_ClienteToVendas"/>
 </AssociationSet>
+<FunctionImport Name="EnviarEmail" ReturnType="ZLOJA_SRV.Cliente" EntitySet="ClienteSet" m:HttpMethod="GET" sap:action-for="ZLOJA_SRV.Cliente">
+<Parameter Name="ClienteID" Type="Edm.String" Mode="In"/>
+</FunctionImport>
 </EntityContainer>
 <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="http://cenw08psap01.resource.com.br:8000/sap/opu/odata/sap/ZLOJA_SRV/$metadata"/>
 <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="http://cenw08psap01.resource.com.br:8000/sap/opu/odata/sap/ZLOJA_SRV/$metadata"/>
