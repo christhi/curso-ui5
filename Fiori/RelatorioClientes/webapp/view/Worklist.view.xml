@@ -17,7 +17,7 @@
 			<Table
 				id="table"
 				width="auto"
-				mode="Delete"
+				mode="MultiSelect"
 				delete="onClienteDelete"
 				items="{
 					path: '/ClienteSet',
@@ -36,6 +36,8 @@
 					<Toolbar>
 						<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
 						<ToolbarSpacer />
+						
+						<Button icon="sap-icon://delete" press="onClienteDelete" />
 						<Button text="Criar" type="Emphasized" press="onCriarCliente" />
 						<SearchField
 							id="searchField"
@@ -51,10 +53,16 @@
 						<Text text="ID"/>
 					</Column>
 					<Column id="nameColumn">
-						<Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
+						<Text text="Nome" id="nameColumnTitle"/>
 					</Column>
 					<Column id="unitNumberColumn" hAlign="End">
-						<Text text="{i18n>tableUnitNumberColumnTitle}" id="unitNumberColumnTitle"/>
+						<Text text="UF" id="unitNumberColumnTitle"/>
+					</Column>
+					<Column hAlign="End">
+						<Text text="Status" />
+					</Column>
+					<Column hAlign="End">
+						<Text text="Enviar Email" />
 					</Column>
 				</columns>
 
@@ -69,6 +77,10 @@
 								title="{Nome}"/>
 							<ObjectNumber
 								unit="{UF}"/>
+							<ObjectStatus
+								text="{Status}"
+							/>
+							<Button icon="sap-icon://letter" press="onEnviarEmail" />
 						</cells>
 					</ColumnListItem>
 				</items>

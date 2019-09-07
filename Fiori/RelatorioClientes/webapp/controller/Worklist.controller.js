@@ -53,22 +53,52 @@ sap.ui.define([
 			});
 		},
 		onClienteDelete: function(oEvent) {
-			var oItem = oEvent.getParameter("listItem"),
-				sPath = oItem.getBindingContext().getPath();
+			var oTable = this.byId("table");
+			var aItens = oTable.getSelectedContextPaths();
+			//trecho comentado porém mantido, para comparação
+			//var oItem = oEvent.getParameter("listItem"),
+			//sPath = oItem.getBindingContext().getPath();
+			
+			for(var i = 0; i<aItens.length;i++ ){
+				//this.getView().getModel().remove(sPath,{
+				this.getView().getModel().remove(aItens[i],{
+					success: function(){
+						MessageToast.show('Cliente eliminado com sucesso.');
+					}.bind(this),
+					error: function(e){
+						console.error(e);
+					}.bind(this),
+				});
+			
+			}       
 
-			this.getView().getModel().remove(sPath,{
-				success: function(){
-					MessageToast.show('Cliente eliminado com sucesso.');
-				}.bind(this),
-				error: function(e){
-					console.error(e);
-				}.bind(this),
-			});
 		},
 	
 		onCriarCliente: function (oEvent) {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("create", {});
+		},
+		
+		onEnviarEmail: function (oEvent){
+			var oSource = oEvent.getSource();
+			var bc = oSource.getParent().getBindingContext();
+			var obj = bc.getObject();
+			var oModel = this.getView().getModel();
+			MessageToast.show("Enviando email");
+			 oModel.callFunction(
+              "/EnviarEmail", {
+                  method: "GET",
+                  urlParameters: {
+                     ClienteID : obj.ID
+                    },
+                  success: function(oData, response) {
+                     
+                    },
+                  error: function(oError) {
+
+                    }
+                });
+		
 		},
 
 		/* =========================================================== */
