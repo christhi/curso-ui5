@@ -1,7 +1,12 @@
 <mvc:View
+    controllerName="cromos.it.walkthrough.controller.Home"
    xmlns="sap.m"
    xmlns:mvc="sap.ui.core.mvc">
 
    <Text text="Olá Mundo pela view"/>
+
+   <Button
+      text="Diga Hello"
+      press=".onShowHello"/>
 
 </mvc:View>
