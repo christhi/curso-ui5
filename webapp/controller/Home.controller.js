@@ -1,13 +1,13 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
+    "sap/ui/core/mvc/Controller",
+    "sap/m/MessageToast"
 
- ], function (Controller) {
+ ], function (Controller, MessageToast) {
     "use strict";
     return Controller.extend("cromos.it.walkthrough.controller.Home", {
 
         onShowHello : function () {
-            // mostrar alerta usando Javascript nativo 
-            alert("Hello World");
+            MessageToast.show("Hello World!");
          }
 
     });
