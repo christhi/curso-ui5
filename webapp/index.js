@@ -1,10 +1,12 @@
 sap.ui.define([
-    "sap/m/Text"
+    "sap/ui/core/mvc/XMLView"
 
-], function (Text) {
+], function (XMLView) {
 	"use strict";
 
-    new Text({
-		text: "Olá Mundo"
-	}).placeAt("content");
+    XMLView.create({
+		viewName: "cromos.it.walkthrough.view.Home"
+	}).then(function (oView) {
+		oView.placeAt("content");
+	});
 });
