@@ -1,12 +1,14 @@
 sap.ui.define([
-    "sap/ui/core/mvc/XMLView"
+    "sap/ui/core/ComponentContainer"
 
-], function (XMLView) {
+], function (ComponentContainer) {
 	"use strict";
 
-    XMLView.create({
-		viewName: "cromos.it.walkthrough.view.Home"
-	}).then(function (oView) {
-		oView.placeAt("content");
-	});
+    new ComponentContainer({
+		name: "cromos.it.walkthrough",
+		settings : {
+			id : "walkthrough"
+		},
+		async: true
+	}).placeAt("content");
 });
