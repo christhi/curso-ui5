@@ -4,14 +4,9 @@ sap.ui.define([
  ], function (UIComponent) {
     "use strict";
     return UIComponent.extend("cromos.it.walkthrough.Component", {
-        metadata : {
-            rootView: {
-               "viewName": "cromos.it.walkthrough.view.Home",
-               "type": "XML",
-               "async": true,
-               "id": "app"
-            }
-         },
+      metadata : {
+         manifest: "json"
+      },
 
        init : function () {
           // chama função init da super classe
