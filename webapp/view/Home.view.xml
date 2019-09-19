@@ -1,6 +1,7 @@
 <mvc:View
     controllerName="cromos.it.walkthrough.controller.Home"
    xmlns="sap.m"
+   xmlns:l="sap.ui.layout"
    xmlns:mvc="sap.ui.core.mvc">
 
    <Text text="Olá Mundo pela view"/>
@@ -8,5 +9,27 @@
    <Button
       text="Diga Hello"
       press=".onShowHello"/>
+ <Panel headerText="Cadastro de: {pessoa>/nome} {pessoa>/sobrenome} " class="sapUiResponsiveMargin" width="auto">
+    <content>
+      <Label text="Nome" class="sapUiSmallMargin" />
+      <Input value="{pessoa>/nome}" valueLiveUpdate="true" width="200px" enabled="{pessoa>/habilitado}" />
+      <Label text="Sobrenome" class="sapUiSmallMargin" />
+      <Input value="{pessoa>/sobrenome}" valueLiveUpdate="false" width="200px" enabled="{pessoa>/habilitado}" />
+      <CheckBox selected="{pessoa>/habilitado}" text="Habilitado" />
+    </content>
+  </Panel>      
+
+    <Panel headerText="Detalhes Endereço" class="sapUiResponsiveMargin" width="auto">
+    <content>
+      	<l:VerticalLayout>
+          <Label class="sapUiSmallMargin" text="Endereço:" />
+          <Text class="sapUiSmallMarginBegin" text="{pessoa>/endereco/rua}" /> 
+          <Text class="sapUiSmallMarginBegin" text="{pessoa>/endereco/cidade}" />     
+          <Text class="sapUiSmallMarginBegin" text="{pessoa>/endereco/cep}" />     
+          <Text class="sapUiSmallMarginBegin" text="{pessoa>/endereco/pais}" />                           
+        </l:VerticalLayout>   
+    </content>
+  </Panel>
+
 
 </mvc:View>
