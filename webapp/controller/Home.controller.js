@@ -34,7 +34,13 @@ sap.ui.define([
       onShowHello : function () {
          var oModel = this.getView().getModel("messages");
          var oDados = oModel.getData();
-         MessageToast.show(oDados.MsgInicial);
+
+
+         var nome = this.getView().getModel("pessoa").getProperty("/nome");
+         var sobrenome = this.getView().getModel("pessoa").getProperty("/sobrenome");
+         var oBundle = this.getView().getModel("i18n").getResourceBundle();
+         var sMsg = oBundle.getText("msgInicialPopup",[nome, sobrenome]);
+         MessageToast.show(sMsg);
       }
 
     });

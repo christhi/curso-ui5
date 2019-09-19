@@ -4,12 +4,12 @@
    xmlns:l="sap.ui.layout"
    xmlns:mvc="sap.ui.core.mvc">
 
-   <Text text="Olá Mundo pela view"/>
+   <Text text="{i18n>msgInicialText}"/>
 
    <Button
-      text="Diga Hello"
+      text="{i18n>msgButtonText}"
       press=".onShowHello"/>
- <Panel headerText="Cadastro de: {pessoa>/nome} {pessoa>/sobrenome} " class="sapUiResponsiveMargin" width="auto">
+ <Panel headerText="{i18n>panelCadastroText}: {pessoa>/nome} {pessoa>/sobrenome} " class="sapUiResponsiveMargin" width="auto">
     <content>
       <Label text="Nome" class="sapUiSmallMargin" />
       <Input value="{pessoa>/nome}" valueLiveUpdate="true" width="200px" enabled="{pessoa>/habilitado}" />
