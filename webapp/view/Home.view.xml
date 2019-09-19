@@ -4,6 +4,12 @@
    xmlns:l="sap.ui.layout"
    xmlns:mvc="sap.ui.core.mvc">
 
+<IconTabBar id="idIconTabBarFiori2" upperCase="true" expanded="{device>/isNoPhone}"
+    class="sapUiResponsiveContentPadding">
+    <items>
+      <IconTabFilter text="Info">
+        <content>
+
    <Text text="{i18n>msgInicialText}"/>
 
    <Button
@@ -31,5 +37,8 @@
     </content>
   </Panel>
 
-
+        </content>
+      </IconTabFilter>
+    </items>
+  </IconTabBar>
 </mvc:View>

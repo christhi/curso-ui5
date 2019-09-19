@@ -8,7 +8,16 @@
       "description": "{{appDescription}}",
       "applicationVersion": {
         "version": "1.0.0"
-      }
+      },
+      "dataSources": {
+        "lojaRemote": {
+          "uri": "https://inove-s4hana.opustech.com.br:5201/sap/opu/odata/sap/ZLOJA_SRV/",
+          "type": "OData",
+          "settings": {
+          "odataVersion": "2.0"
+          }
+        }
+      }  
     },
     "sap.ui": {
       "technology": "UI5",
@@ -37,7 +46,10 @@
         "settings": {
           "bundleName": "cromos.it.walkthrough.i18n.i18n"
         }
-        }
+        },
+        "": {
+          "dataSource": "lojaRemote"
+          }
       }
     }
   }
