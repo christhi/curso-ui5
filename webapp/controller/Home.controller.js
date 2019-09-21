@@ -41,7 +41,22 @@ sap.ui.define([
          var oBundle = this.getView().getModel("i18n").getResourceBundle();
          var sMsg = oBundle.getText("msgInicialPopup",[nome, sobrenome]);
          MessageToast.show(sMsg);
-      }
+      },
+
+      onVendaSelected: function(oEvent) {
+         var oSelectedItem = oEvent.getSource();
+         //se não for modelo default, informar nome do modelo. Ex: getBindingContext("pessoa");
+			var oContext = oSelectedItem.getBindingContext();
+			var sPath = oContext.getPath();
+			var oProductDetailPanel = this.byId("vendaDetailsPanel");
+			oProductDetailPanel.bindElement({ 
+            path: sPath,
+            //opcional. se não for modelo default, preencher nome do modelo
+            // model: "pessoa" 
+            expand: 'cliente'
+            });
+
+		}
 
     });
  });
