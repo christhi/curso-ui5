@@ -34,7 +34,11 @@
    <Panel id="vendaDetailsPanel" headerText="Detalhes Venda" class="sapUiResponsiveMargin" width="auto">
     <l:Grid defaultSpan="L3 M6 S12" containerQuery="true">
         <Label text="ID :" />
-        <Input value="{IDVenda}" enabled="false" />
+        <Input enabled="false"
+               value="{
+                   path: 'IDVenda',
+                   formatter: '.formatter.idText'
+                   }" />
         
         <Label text="Descrição:" />
         <Input value="{Descricao}" />
@@ -62,7 +66,11 @@
                 }" />
         
         <Label text="Criado Por:" />
-        <Input value="{CriadoPor}" />
+        <Input 
+        value="{
+            path: 'CriadoPor',
+            formatter: '.formatter.userText'
+            }" />
 
         <Label text="Nome Cliente:" />
         <Input value="{cliente/Nome}" />

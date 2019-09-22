@@ -1,12 +1,13 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageToast",
-    "sap/ui/model/json/JSONModel"
+    "sap/ui/model/json/JSONModel",
+    "cromos/it/walkthrough/model/formatter"
 
- ], function (Controller, MessageToast, JSONModel) {
+ ], function (Controller, MessageToast, JSONModel, formatter) {
     "use strict";
     return Controller.extend("cromos.it.walkthrough.controller.Home", {
-
+      formatter: formatter,
       onInit : function(){
          var oMsgModel = new JSONModel({
             MsgInicial: "Seja bem vindo!"
