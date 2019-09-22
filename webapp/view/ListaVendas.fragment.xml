@@ -20,7 +20,13 @@
             press=".onVendaSelected"
 		    type="Active"
 			title="{Descricao}"
-			info="{ValorLiquido}"
+			info="{
+                    parts: [{path: 'ValorLiquido'}, {path: 'view>/moeda'}],
+                    type: 'sap.ui.model.type.Currency',
+                    formatOptions: {
+                        showMeasure: false
+                    }
+                }"
             infoState="{= ${ValorLiquido} > 50 ? 'Error' : 'Success' }"/>
       </items>
    </List>
@@ -34,13 +40,26 @@
         <Input value="{Descricao}" />
 
         <Label text="Data de Criação:" />
-        <Input value="{DataCriacao}" />
+        <Input enabled="false"
+                value="{
+				path: 'DataCriacao',
+				type: 'sap.ui.model.type.Date',
+				formatOptions: {
+					style: 'short'
+                    }
+				}" />
         
         <Label text="Cliente:" />
         <Input value="{Cliente}" />
         
         <Label text="Valor Líquido:" />
-        <Input value="{ValorLiquido}" />
+        <Input value="{
+                    parts: [{path: 'ValorLiquido'}, {path: 'view>/moedaEstrangeira'}],
+                    type: 'sap.ui.model.type.Currency',
+                    formatOptions: {
+                        showMeasure: false
+                    }
+                }" />
         
         <Label text="Criado Por:" />
         <Input value="{CriadoPor}" />

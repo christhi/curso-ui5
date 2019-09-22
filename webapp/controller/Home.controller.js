@@ -28,6 +28,12 @@ sap.ui.define([
             });
 
          this.getView().setModel(oPessoaModel, "pessoa");    
+
+         var oViewModel = new JSONModel({
+            moeda: "BRL",
+            moedaEstrangeira: "JPY"
+			});
+			this.getView().setModel(oViewModel, "view");
          
       },
 
