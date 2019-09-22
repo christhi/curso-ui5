@@ -20,7 +20,8 @@
             press=".onVendaSelected"
 		    type="Active"
 			title="{Descricao}"
-			info="{ValorLiquido}"/>
+			info="{ValorLiquido}"
+            infoState="{= ${ValorLiquido} > 50 ? 'Error' : 'Success' }"/>
       </items>
    </List>
 
