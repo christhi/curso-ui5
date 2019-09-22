@@ -48,8 +48,13 @@
         }
         },
         "": {
-          "dataSource": "lojaRemote"
+          "dataSource": "lojaRemote",
+          "settings": {
+            "defaultBindingMode": "TwoWay",
+            "defaultUpdateMethod": "PUT",
+            "useBatch": true
           }
+        }
       }
     }
   }

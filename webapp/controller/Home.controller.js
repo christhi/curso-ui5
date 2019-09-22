@@ -63,7 +63,63 @@ sap.ui.define([
             expand: 'cliente'
             });
 
-		}
+      },
+      
+      onAtualizarVendasMonit: function (){
+         var oModel = this.getView().getModel();                 
+         // existem duas formas de atualizar dados:         
+         //1 monitorando alterações no modelo       
+         
+         if ( oModel.hasPendingChanges() ){                        
+            oModel.submitChanges(
+               {
+               success: function(oData, oResponse){
+                  MessageToast.show("Dados Atualizados");
+               },
+               error: function(oError){
+                  MessageToast.show("Erro ao gravar Dados");
+               }
+            }
+            );
+         }else{
+            MessageToast.show("Não há mudanças para gravar");
+         }
+         
+
+      },
+
+      onAtualizarVendas: function (){
+         var oModel = this.getView().getModel();       
+         if ( !oModel.hasPendingChanges() ){
+            MessageToast.show("Não há mudanças para gravar");
+            return;            
+         }
+         // existem duas formas de atualizar dados:
+         //2 obtendo dados e chamando serviço manualmente
+
+      var oVendaDetailsPanel = this.byId("vendaDetailsPanel");
+      var bc = oVendaDetailsPanel.getBindingContext()
+      var obj = bc.getObject();      
+      var path = bc.getPath();
+
+      var oNewData = {
+         IDVenda : obj.IDVenda,
+         Descricao : obj.Descricao
+      };
+
+      oModel.update(
+         path, 
+         oNewData,
+         {
+         success: function(oEvent){
+            MessageToast.show("Dados Gravados");
+         },
+         error: function(oError){
+            MessageToast.show("Erro ao gravar Dados");
+         }
+         });
+
+      },
 
     });
  });

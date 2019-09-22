@@ -32,6 +32,16 @@
    </List>
 
    <Panel id="vendaDetailsPanel" headerText="Detalhes Venda" class="sapUiResponsiveMargin" width="auto">
+        <headerToolbar>
+			<Toolbar height="3rem" style="Clear">
+				<Title text="Detalhes Documento de  Venda" />
+				<ToolbarSpacer />
+				<Button text="Salvar Monitorando modelo" type="Emphasized"
+                    press="onAtualizarVendasMonit" />				
+                <Button text="Salvar obtendo dados" type="Ghost"
+                    press="onAtualizarVendas" />				
+			</Toolbar>
+		</headerToolbar>
     <l:Grid defaultSpan="L3 M6 S12" containerQuery="true">
         <Label text="ID :" />
         <Input enabled="false"
