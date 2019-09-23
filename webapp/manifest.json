@@ -54,6 +54,10 @@
             "defaultUpdateMethod": "PUT",
             "useBatch": true
           }
+        },
+        "produtos": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/Products.json"
         }
       }
     }

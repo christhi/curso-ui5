@@ -48,6 +48,12 @@
         </content>
       </IconTabFilter>
 
+      <IconTabFilter text="Produtos" key="key3">
+        <content>
+          <core:Fragment fragmentName="cromos.it.walkthrough.view.ListaProdutos" type="XML" />
+        </content>
+      </IconTabFilter>
+
     </items>
   </IconTabBar>
 </mvc:View>

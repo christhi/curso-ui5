@@ -121,5 +121,36 @@ sap.ui.define([
 
       },
 
+      productListFactory: function(sId, oContext){
+         var olistItem;
+         if (oContext.getProperty("UnitsInStock") === 0 && oContext.getProperty("Discontinued")) {
+            
+             olistItem = new sap.m.ObjectListItem({
+               title: "Descontinuado",
+               icon: "sap-icon://warning",
+               number: {path: "produtos>UnitsInStock"} ,
+               numberState: "Error"
+            });
+
+         } else {
+
+            olistItem = new sap.m.ObjectListItem({
+               title: {path: "produtos>ProductName"},
+               number: {path: "produtos>UnitsInStock"} ,
+               numberState: "Success"
+            });
+
+            olistItem.addAttribute(
+               new sap.m.ObjectAttribute({
+                  text:{path: "produtos>QuantityPerUnit"}
+               })
+            );
+            
+         }
+         
+         return olistItem;
+         
+      }
+
     });
  });
