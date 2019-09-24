@@ -54,7 +54,8 @@ sap.ui.define([
          var oSelectedItem = oEvent.getSource();
          //se não for modelo default, informar nome do modelo. Ex: getBindingContext("pessoa");
 			var oContext = oSelectedItem.getBindingContext();
-			var sPath = oContext.getPath();
+         var sPath = oContext.getPath();
+         /* TRECHO COMENTADO DEVIDO UTILIZAÇÃO DE ROUTING
 			var oProductDetailPanel = this.byId("vendaDetailsPanel");
 			oProductDetailPanel.bindElement({ 
             path: sPath,
@@ -62,6 +63,16 @@ sap.ui.define([
             // model: "pessoa" 
             expand: 'cliente'
             });
+         */
+        var obj = oContext.getObject();
+        
+        //existem 3 formas de passar os parametros de navegação
+        this.getRouter().navTo("detalheVendaPage",{        
+         //   idPath : obj.IDVenda /*1- por id do objeto */
+            idPath : sPath.substr(1) /*2- por path do modelo, removendo caracter '/' */
+        //    idPath : encodeURIComponent(sPath) /*3-por path do modelo, tratando o caracter '/' */
+         }
+        );
 
       },
       

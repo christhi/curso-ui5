@@ -23,7 +23,14 @@
 				numberUnit="BRL" >
 				<attributes>
 					<ObjectAttribute title="Criado Por" text="{CriadoPor}" />
-                    <ObjectAttribute title="Data de Criação" text="{DataCriacao}" />
+                    <ObjectAttribute title="Data de Criação" 
+					text="{
+						path: 'DataCriacao',
+						type: 'sap.ui.model.type.Date',
+						formatOptions: {
+							style: 'short'
+							}
+						}" />
 					<ObjectAttribute title="Cliente" text="{Cliente} {cliente/Nome}" />
 				</attributes>
 				<statuses>
@@ -32,6 +39,9 @@
 			</ObjectHeader>
 
             <Panel headerText="Painel de Detalhes" width="auto" class="sapUiResponsiveMargin">
+			<Label text="ID do Documento: " />
+			<Label text="{IDVenda}" />
+				
             </Panel>
 
 		</content>
