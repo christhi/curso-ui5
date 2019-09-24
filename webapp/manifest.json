@@ -29,7 +29,7 @@
     },
     "sap.ui5": {
       "rootView": {
-          "viewName": "cromos.it.walkthrough.view.Home",
+          "viewName": "cromos.it.walkthrough.view.App",
           "type": "XML",
           "async": true,
           "id": "app"
@@ -59,6 +59,37 @@
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/Products.json"
         }
+      },
+      "routing": {
+         "config": {
+            "routerClass": "sap.m.routing.Router",
+            "viewType": "XML",
+            "viewPath": "cromos.it.walkthrough.view",
+            "controlId": "app",
+            "controlAggregation": "pages",
+            "transition": "slide",
+            "bypassed": {
+              "target": "notFound"
+           },
+            "async": true
+         },
+         "routes": [{
+            "pattern": "",
+            "name": "appHome",
+            "target": "home"
+         }],
+         "targets": {
+            "home": {
+               "viewId": "home",
+               "viewName": "Home",
+               "viewLevel" : 1
+            },
+            "notFound": {
+              "viewId": "notFound",
+              "viewName": "NotFound",
+              "transition": "show"
+           }
+         }
       }
     }
   }

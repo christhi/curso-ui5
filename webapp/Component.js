@@ -11,6 +11,9 @@ sap.ui.define([
        init : function () {
           // chama função init da super classe
           UIComponent.prototype.init.apply(this, arguments);
+
+          // cria as views baseado na url/hash
+          this.getRouter().initialize();
        }
     });
  }); 
