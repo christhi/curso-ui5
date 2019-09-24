@@ -1,0 +1,37 @@
+<mvc:View
+	height="100%"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	<Page
+		id="detalhesVendaPage"
+		title=" Detalhes de Venda" >
+
+		<content>
+			<ObjectHeader
+				title="{Descricao}"
+				backgroundDesign="Solid"
+				number="{
+					parts:[{path:'ValorLiquido'},{path:'CurrencyCode'}],
+					type: 'sap.ui.model.type.Currency',
+					formatOptions: {showMeasure: false}
+				}"
+				numberUnit="BRL" >
+				<attributes>
+					<ObjectAttribute title="Criado Por" text="{CriadoPor}" />
+                    <ObjectAttribute title="Data de Criação" text="{DataCriacao}" />
+					<ObjectAttribute title="Cliente" text="{Cliente} {cliente/Nome}" />
+				</attributes>
+				<statuses>
+					<ObjectStatus title="Status" text="Confirmado" state="Success" />
+				</statuses>
+			</ObjectHeader>
+
+            <Panel headerText="Painel de Detalhes" width="auto" class="sapUiResponsiveMargin">
+            </Panel>
+
+		</content>
+	</Page>
+</mvc:View>
+

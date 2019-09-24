@@ -77,7 +77,12 @@
             "pattern": "",
             "name": "appHome",
             "target": "home"
-         }],
+          },{
+            "pattern": "detalhe",
+            "name": "detailPage",
+            "target": "detail"
+          }
+          ],
          "targets": {
             "home": {
                "viewId": "home",
@@ -88,7 +93,12 @@
               "viewId": "notFound",
               "viewName": "NotFound",
               "transition": "show"
-           }
+           },
+           "detail": {
+            "viewId": "detalhesVenda",
+            "viewName": "DetalhesVenda",
+            "transition": "slide"
+         }
          }
       }
     }

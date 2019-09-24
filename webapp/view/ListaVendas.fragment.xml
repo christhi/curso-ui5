@@ -15,6 +15,15 @@
                 expand: 'cliente'
             }
             }" >
+        <headerToolbar>
+			<Toolbar>
+				<ToolbarSpacer />
+				
+				<Button
+					icon="sap-icon://detail-view"
+					press="onShowDetails" />				
+			</Toolbar>
+		</headerToolbar>
         <items>
             <StandardListItem
             press=".onVendaSelected"

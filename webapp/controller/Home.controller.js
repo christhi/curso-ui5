@@ -150,6 +150,11 @@ sap.ui.define([
          
          return olistItem;
          
+      },
+
+      onShowDetails: function(oEvent){
+         this.getOwnerComponent().getRouter().navTo("detailPage");
+
       }
 
     });
