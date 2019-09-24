@@ -1,7 +1,10 @@
 <mvc:View
+   controllerName="cromos.it.walkthrough.controller.NotFound"
    xmlns="sap.m"
    xmlns:mvc="sap.ui.core.mvc">
    <MessagePage
+      showNavButton="true"
+		navButtonPress="onNavBack"
       title="Erro"
       text="Pagina não encontrada"
       description="Verifique o endereço digitado"/>
