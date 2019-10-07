@@ -1,0 +1,82 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZLOJA_SRV" xml:lang="pt"
+            sap:schema-version="1">
+            <EntityType Name="Cliente" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID" />
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false"
+                    sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Nome" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false"
+                    sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Telefone" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false"
+                    sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="UF" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false"
+                    sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Email" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false"
+                    sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false"
+                    sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <NavigationProperty Name="vendas" Relationship="ZLOJA_SRV.ClienteToVendas"
+                    FromRole="FromRole_ClienteToVendas" ToRole="ToRole_ClienteToVendas" sap:label="Vendas" />
+            </EntityType>
+            <EntityType Name="Venda" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="IDVenda" />
+                </Key>
+                <Property Name="IDVenda" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false"
+                    sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="DataCriacao" Type="Edm.DateTime" Nullable="false" Precision="0" sap:unicode="false"
+                    sap:label="Data" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                    sap:filterable="false" />
+                <Property Name="Descricao" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false"
+                    sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Cliente" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false"
+                    sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="ValorLiquido" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="2"
+                    sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+                    sap:filterable="false" />
+                <Property Name="CriadoPor" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false"
+                    sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <NavigationProperty Name="cliente" Relationship="ZLOJA_SRV.VendaToCliente"
+                    FromRole="FromRole_VendaToCliente" ToRole="ToRole_VendaToCliente" sap:label="Cliente" />
+            </EntityType>
+            <Association Name="VendaToCliente" sap:content-version="1">
+                <End Type="ZLOJA_SRV.Venda" Multiplicity="1" Role="FromRole_VendaToCliente" />
+                <End Type="ZLOJA_SRV.Cliente" Multiplicity="1" Role="ToRole_VendaToCliente" />
+            </Association>
+            <Association Name="ClienteToVendas" sap:content-version="1">
+                <End Type="ZLOJA_SRV.Cliente" Multiplicity="1" Role="FromRole_ClienteToVendas" />
+                <End Type="ZLOJA_SRV.Venda" Multiplicity="*" Role="ToRole_ClienteToVendas" />
+            </Association>
+            <EntityContainer Name="ZLOJA_SRV_Entities" m:IsDefaultEntityContainer="true"
+                sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ClienteSet" EntityType="ZLOJA_SRV.Cliente" sap:creatable="false" sap:updatable="false"
+                    sap:deletable="false" sap:pageable="false" sap:content-version="1" />
+                <EntitySet Name="VendaSet" EntityType="ZLOJA_SRV.Venda" sap:creatable="false" sap:updatable="false"
+                    sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1" />
+                <AssociationSet Name="VendaToCliente_AssocSet" Association="ZLOJA_SRV.VendaToCliente"
+                    sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="VendaSet" Role="FromRole_VendaToCliente" />
+                    <End EntitySet="ClienteSet" Role="ToRole_VendaToCliente" />
+                </AssociationSet>
+                <AssociationSet Name="ClienteToVendas_AssocSet" Association="ZLOJA_SRV.ClienteToVendas"
+                    sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ClienteSet" Role="FromRole_ClienteToVendas" />
+                    <End EntitySet="VendaSet" Role="ToRole_ClienteToVendas" />
+                </AssociationSet>
+                <FunctionImport Name="EnviarEmail" ReturnType="ZLOJA_SRV.Cliente" EntitySet="ClienteSet"
+                    m:HttpMethod="GET" sap:action-for="ZLOJA_SRV.Cliente">
+                    <Parameter Name="ClienteID" Type="Edm.String" Mode="In" />
+                </FunctionImport>
+            </EntityContainer>
+            <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self"
+                href="http://inove-s4hana.opustech.com.br:8001/sap/opu/odata/sap/ZMERCADO_SRV/$metadata" />
+            <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version"
+                href="http://inove-s4hana.opustech.com.br:8001/sap/opu/odata/sap/ZMERCADO_SRV/$metadata" />
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
