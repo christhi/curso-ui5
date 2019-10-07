@@ -25,6 +25,7 @@
 			</Toolbar>
 		</headerToolbar>
         <items>
+            <core:ExtensionPoint name="VendaItemList" >
             <StandardListItem
             press=".onVendaSelected"
 		    type="Active"
@@ -37,6 +38,7 @@
                     }
                 }"
             infoState="{= ${ValorLiquido} > 50 ? 'Error' : 'Success' }"/>
+            </core:ExtensionPoint>
       </items>
    </List>
 
