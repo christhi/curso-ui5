@@ -3,7 +3,7 @@ sap.ui.define([
     
  ], function (UIComponent) {
     "use strict";
-    return UIComponent.extend("cromos.it.walkthrough.Component", {
+    return UIComponent.extend("cristiano.cromos.it.walkthrough.Component", {
       metadata : {
          manifest: "json"
       },

@@ -5,7 +5,7 @@ sap.ui.define([
 	"use strict";
 
     new ComponentContainer({
-		name: "cromos.it.walkthrough",
+		name: "cristiano.cromos.it.walkthrough",
 		settings : {
 			id : "walkthrough"
 		},

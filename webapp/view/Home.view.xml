@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="cromos.it.walkthrough.controller.Home"
+    controllerName="cristiano.cromos.it.walkthrough.controller.Home"
    xmlns="sap.m"
    xmlns:l="sap.ui.layout"
    xmlns:core="sap.ui.core"
@@ -48,13 +48,13 @@
 
       <IconTabFilter text="Vendas" key="key2">
         <content>
-          <core:Fragment fragmentName="cromos.it.walkthrough.view.ListaVendas" type="XML" />
+          <core:Fragment fragmentName="cristiano.cromos.it.walkthrough.view.ListaVendas" type="XML" />
         </content>
       </IconTabFilter>
 
       <IconTabFilter text="Produtos" key="key3">
         <content>
-          <core:Fragment fragmentName="cromos.it.walkthrough.view.ListaProdutos" type="XML" />
+          <core:Fragment fragmentName="cristiano.cromos.it.walkthrough.view.ListaProdutos" type="XML" />
         </content>
       </IconTabFilter>
       <core:ExtensionPoint name="HomeIconTabFilter" /> 

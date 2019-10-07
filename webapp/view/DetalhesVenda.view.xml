@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="cromos.it.walkthrough.controller.DetalhesVenda"
+    controllerName="cristiano.cromos.it.walkthrough.controller.DetalhesVenda"
 	height="100%"
 	xmlns:f="sap.ui.layout.form"
 	xmlns:core="sap.ui.core"

@@ -1,12 +1,12 @@
 sap.ui.define([
-   "cromos/it/walkthrough/controller/BaseController",
+   "cristiano/cromos/it/walkthrough/controller/BaseController",
     "sap/m/MessageToast",
     "sap/ui/model/json/JSONModel",
-    "cromos/it/walkthrough/model/formatter"
+    "cristiano/cromos/it/walkthrough/model/formatter"
 
  ], function (BaseController, MessageToast, JSONModel, formatter) {
     "use strict";
-    return BaseController.extend("cromos.it.walkthrough.controller.Home", {
+    return BaseController.extend("cristiano.cromos.it.walkthrough.controller.Home", {
       formatter: formatter,
       onInit : function(){
          var oMsgModel = new JSONModel({

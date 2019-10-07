@@ -1,9 +1,9 @@
 sap.ui.define([
-	"cromos/it/walkthrough/controller/BaseController"
+	"cristiano/cromos/it/walkthrough/controller/BaseController"
 
 ], function (BaseController) {
 	"use strict";
-	return BaseController.extend("cromos.it.walkthrough.controller.DetalhesVenda", {
+	return BaseController.extend("cristiano.cromos.it.walkthrough.controller.DetalhesVenda", {
 		onInit: function () {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.getRoute("detalheVendaPage").attachPatternMatched(this._onObjectMatched, this);

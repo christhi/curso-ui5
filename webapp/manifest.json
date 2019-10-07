@@ -1,7 +1,7 @@
 {
     "_version": "1.12.0",
     "sap.app": {
-      "id": "cromos.it.walkthrough",
+      "id": "cristiano.cromos.it.walkthrough",
       "type": "application",
       "i18n": "i18n/i18n.properties",
       "title": "{{appTitle}}",
@@ -29,7 +29,7 @@
     },
     "sap.ui5": {
       "rootView": {
-          "viewName": "cromos.it.walkthrough.view.App",
+          "viewName": "cristiano.cromos.it.walkthrough.view.App",
           "type": "XML",
           "async": true,
           "id": "app"
@@ -44,7 +44,7 @@
         "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "cromos.it.walkthrough.i18n.i18n"
+          "bundleName": "cristiano.cromos.it.walkthrough.i18n.i18n"
         }
         },
         "": {
@@ -64,7 +64,7 @@
          "config": {
             "routerClass": "sap.m.routing.Router",
             "viewType": "XML",
-            "viewPath": "cromos.it.walkthrough.view",
+            "viewPath": "cristiano.cromos.it.walkthrough.view",
             "controlId": "app",
             "controlAggregation": "pages",
             "transition": "slide",
