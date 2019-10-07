@@ -41,6 +41,8 @@
     </content>
   </Panel>
 
+  <core:ExtensionPoint name="HomePanelInfoTab" />
+
         </content>
       </IconTabFilter>
 
@@ -55,7 +57,7 @@
           <core:Fragment fragmentName="cromos.it.walkthrough.view.ListaProdutos" type="XML" />
         </content>
       </IconTabFilter>
-
+      <core:ExtensionPoint name="HomeIconTabFilter" /> 
     </items>
   </IconTabBar>
   </content>
