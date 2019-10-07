@@ -20,6 +20,8 @@
                     sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
                 <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false"
                     sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Endereco" Type="Edm.String" Nullable="false" MaxLength="100" sap:creatable="false"
+                    sap:updatable="false" sap:sortable="false" sap:filterable="false" />
                 <NavigationProperty Name="vendas" Relationship="ZLOJA_SRV.ClienteToVendas"
                     FromRole="FromRole_ClienteToVendas" ToRole="ToRole_ClienteToVendas" sap:label="Vendas" />
             </EntityType>
@@ -41,6 +43,8 @@
                     sap:filterable="false" />
                 <Property Name="CriadoPor" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false"
                     sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Status" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false"
+                    sap:sortable="false" sap:filterable="false" />
                 <NavigationProperty Name="cliente" Relationship="ZLOJA_SRV.VendaToCliente"
                     FromRole="FromRole_VendaToCliente" ToRole="ToRole_VendaToCliente" sap:label="Cliente" />
             </EntityType>
