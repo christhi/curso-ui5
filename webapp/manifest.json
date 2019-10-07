@@ -11,7 +11,7 @@
       },
       "dataSources": {
         "lojaRemote": {
-          "uri": "https://inove-s4hana.opustech.com.br:5201/sap/opu/odata/sap/ZLOJA_SRV/",
+          "uri": "/sap/opu/odata/sap/ZLOJA_SRV/",
           "type": "OData",
           "settings": {
           "odataVersion": "2.0"
