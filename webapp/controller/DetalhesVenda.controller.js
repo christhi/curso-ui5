@@ -48,7 +48,12 @@ sap.ui.define([
 			// No data for the binding
 			if (!this.getView().getBindingContext()) {
 				this.getRouter().getTargets().display("notFound");
-			}
+			} else {
+                var obj = this.getView().getBindingContext().getObject();
+                if (this.onDataReceived) {         // verifica se a extensão está implementada.
+                    this.onDataReceived(obj); // ...e a chama
+                 }
+            }
 		}
 	});
 });
