@@ -1,0 +1,69 @@
+TR0000100070/IWFND/GW_CLIENT                                SAP Gateway Client                                                                                                                  
+TR0000100069/IWFND/MAINT_SERVICE                            Activate and Maintain Services                                                                                                      
+TR0000100068/IWFND/ERROR_LOG                                SAP Gateway Error Log                                                                                                               
+TR0000100067/IWFND/APPS_LOG                                 SAP Gateway Application Log Viewer                                                                                                  
+TR0000100065SE38                                            Editor ABAP                                                                                                                         
+TR0000100002/IWFND/ERROR_LOG                                Transação /IWFND/ERROR_LOG                                                                                                          
+  0000100003                                                ***  FIORI FULLSTACK ***                                                                                                            
+OT0000300004URL                                             Fiori Apps Library                                                                                                                  https://fioriappslibrary.hana.ondemand.com/sap/fix/externalViewer/
+  0000300005                                                UI5                                                                                                                                 
+  0000300006                                                Gateway                                                                                                                             
+  0000300007                                                Launchpad                                                                                                                           
+  0000300008                                                Enterprise Search                                                                                                                   
+  0000300009                                                Perfil                                                                                                                              
+  0000300010                                                Setup                                                                                                                               
+OT0000500011URL                                             UI5 SDK                                                                                                                             http://ui5.sap.com
+  0000600012                                                Front End System                                                                                                                    
+  0000600013                                                Back End System                                                                                                                     
+TR0000700014/UI2/FLP                                        SAP Fiori Launchpad                                                                                                                 
+  0000700015                                                Analysis                                                                                                                            
+  0000700016                                                Caches                                                                                                                              
+  0000700018                                                Designer                                                                                                                            
+  0000700019                                                Tradução                                                                                                                            
+TR0000800020ESH_SEARCH                                      Enterprise Search                                                                                                                   
+TR0000800021ESH_COCKPIT                                     Connector Administration Cockpit                                                                                                    
+TR0000900022S_BCE_68001430                                  Compare Users                                                                                                                       
+TR0000900023PFCG                                            Role Maintenance                                                                                                                    
+TR0000900024SU53                                            Evaluate Authorization Check                                                                                                        
+TR0000900025SU01                                            User Maintenance                                                                                                                    
+TR0000900026SU01D                                           User Display                                                                                                                        
+TR0000900027SUIM                                            User Information System                                                                                                             
+TR0001000028STC01                                           Task Manager for Tech. Configuration                                                                                                
+TR0001000029SM59                                            RFC Destinations (Display/Maintain)                                                                                                 
+TR0001000030/UI2/GW_SYS_ALIAS                               Gateway - Manage SAP System Alias                                                                                                   
+TR0001000031SMT1                                            Trusted-Trusting Connections                                                                                                        
+TR0001000032SICF                                            HTTP Service Hierarchy Maintenance                                                                                                  
+TR0001000033SICF_INST                                       Activate Service During Installation                                                                                                
+TR0001000034SIMGH                                           IMG Structure Maintenance                                                                                                           
+TR0001200066SMICM                                           Monitor ICM                                                                                                                         
+TR0001200035/IWFND/GW_CLIENT                                SAP Gateway Client                                                                                                                  
+TR0001200036/IWFND/MAINT_SERVICE                            Activate and Maintain Services                                                                                                      
+TR0001200037/IWFND/TRACES                                   SAP Gateway Traces                                                                                                                  
+TR0001200038/UI2/GW_SYS_ALIAS                               Gateway - Manage SAP System Alias                                                                                                   
+TR0001200039/IWFND/CACHE_CLEANUP                            Cleanup of Model Cache                                                                                                              
+TR0001200040/IWBEP/CACHE_CLEANUP                            Cleanup of Model Cache                                                                                                              
+TR0001200041/IWFND/ERROR_LOG                                Gateway Error Log                                                                                                                   
+TR0001200042/IWFND/EXPLORER                                 Service Explorer                                                                                                                    
+TR0001200043/IWFND/V4_ADMIN                                 SAP Gateway Service Administration                                                                                                  
+TR0001300044SEGW                                            Gateway Service Builder                                                                                                             
+TR0001300045/IWBEP/SBS                                      SAP Gateway Service Builder Setup                                                                                                   
+TR0001300046/IWBEP/REG_VOCAN                                Maintain Vocabulary Annotations                                                                                                     
+TR0001300047/IWBEP/REG_SERVICE                              Maintain Service                                                                                                                    
+TR0001300048/IWBEP/REG_MODEL                                Maintain Model                                                                                                                      
+TR0001300049/IWBEP/TRACES                                   SAP GW Backend Traces                                                                                                               
+TR0001300050/IWBEP/V4_ADMIN                                 SAP Backend Service Administration                                                                                                  
+TR0001300051/IWBEP/NOTIF_MONITOR                            SAP GW Backend Notification Monitor                                                                                                 
+TR0001500052/UI2/FLIA                                       Fiori Launchpad Intent Analyis                                                                                                      
+TR0001500053/UI2/FLC                                        Fiori Launchpad Checks                                                                                                              
+TR0001500054/UI2/FLIA                                       Fiori Launchpad Intent Analyis                                                                                                      
+TR0001600055/UI2/CACHE_DEL                                  Delete cache entries                                                                                                                
+  0001800017                                                Temas                                                                                                                               
+TR0001800058/UI2/FLPD_CUST                                  Fiori Lpd. Designer (client-spec.)                                                                                                  
+TR0001800059/UI2/FLPD_CONF                                  Fiori Lpd. Designer (cross-client)                                                                                                  
+TR0001800060LPD_CUST                                        Launchpad customizing                                                                                                               
+TR0001800061/UI2/SEMOBJ_SAP                                 Define Semantic Object - SAP                                                                                                        
+TR0001800062/UI2/SEMOBJ                                     Define Semantic Object - Customer                                                                                                   
+TR0001900063SLXT                                            Translation Transport                                                                                                               
+TR0001900064SE63                                            Translation Editor                                                                                                                  
+TR0001700056/UI5/THEME_TOOL                                 UI Theme Tool                                                                                                                       
+TR0001700057/UI5/THEME_DESIGNER                             UI Theme Designer                                                                                                                   
