@@ -1,39 +1,17 @@
-CLASS zcl_zmercado_dpc_ext DEFINITION
-  PUBLIC
-  INHERITING FROM zcl_zmercado_dpc
-  CREATE PUBLIC .
+class ZCL_ZMERCADO_DPC_EXT definition
+  public
+  inheriting from ZCL_ZMERCADO_DPC
+  create public .
 
-  PUBLIC SECTION.
+public section.
 
-    METHODS /iwbep/if_mgw_appl_srv_runtime~get_entity
-        REDEFINITION .
-    METHODS /iwbep/if_mgw_appl_srv_runtime~get_entityset
-        REDEFINITION .
-  PROTECTED SECTION.
+  methods /IWBEP/IF_MGW_APPL_SRV_RUNTIME~GET_ENTITY
+    redefinition .
+protected section.
 
-    METHODS produtoset_get_entityset
-      IMPORTING
-        !iv_entity_name           TYPE string
-        !iv_entity_set_name       TYPE string
-        !iv_source_name           TYPE string
-        !it_filter_select_options TYPE /iwbep/t_mgw_select_option
-        !is_paging                TYPE /iwbep/s_mgw_paging
-        !it_key_tab               TYPE /iwbep/t_mgw_name_value_pair
-        !it_navigation_path       TYPE /iwbep/t_mgw_navigation_path
-        !it_order                 TYPE /iwbep/t_mgw_sorting_order
-        !iv_filter_string         TYPE string
-        !iv_search_string         TYPE string
-        !io_tech_request_context  TYPE REF TO /iwbep/if_mgw_req_entityset OPTIONAL
-      EXPORTING
-        !et_entityset             TYPE zcl_zmercado_mpc=>tt_produto
-        !es_response_context      TYPE /iwbep/if_mgw_appl_srv_runtime=>ty_s_mgw_response_context
-      RAISING
-        /iwbep/cx_mgw_busi_exception
-        /iwbep/cx_mgw_tech_exception .
-
-    METHODS vendaset_get_entityset
-        REDEFINITION .
-  PRIVATE SECTION.
+  methods VENDASET_GET_ENTITYSET
+    redefinition .
+private section.
 ENDCLASS.
 
 
@@ -121,125 +99,6 @@ CLASS ZCL_ZMERCADO_DPC_EXT IMPLEMENTATION.
             es_response_context     = es_response_context.
 
     ENDCASE.
-
-  ENDMETHOD.
-
-
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Public Method ZCL_ZMERCADO_DPC_EXT->/IWBEP/IF_MGW_APPL_SRV_RUNTIME~GET_ENTITYSET
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_ENTITY_NAME                 TYPE        STRING(optional)
-* | [--->] IV_ENTITY_SET_NAME             TYPE        STRING(optional)
-* | [--->] IV_SOURCE_NAME                 TYPE        STRING(optional)
-* | [--->] IT_FILTER_SELECT_OPTIONS       TYPE        /IWBEP/T_MGW_SELECT_OPTION(optional)
-* | [--->] IT_ORDER                       TYPE        /IWBEP/T_MGW_SORTING_ORDER(optional)
-* | [--->] IS_PAGING                      TYPE        /IWBEP/S_MGW_PAGING(optional)
-* | [--->] IT_NAVIGATION_PATH             TYPE        /IWBEP/T_MGW_NAVIGATION_PATH(optional)
-* | [--->] IT_KEY_TAB                     TYPE        /IWBEP/T_MGW_NAME_VALUE_PAIR(optional)
-* | [--->] IV_FILTER_STRING               TYPE        STRING(optional)
-* | [--->] IV_SEARCH_STRING               TYPE        STRING(optional)
-* | [--->] IO_TECH_REQUEST_CONTEXT        TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITYSET(optional)
-* | [<---] ER_ENTITYSET                   TYPE REF TO DATA
-* | [<---] ES_RESPONSE_CONTEXT            TYPE        /IWBEP/IF_MGW_APPL_SRV_RUNTIME=>TY_S_MGW_RESPONSE_CONTEXT
-* | [!CX!] /IWBEP/CX_MGW_BUSI_EXCEPTION
-* | [!CX!] /IWBEP/CX_MGW_TECH_EXCEPTION
-* +--------------------------------------------------------------------------------------</SIGNATURE>
-  METHOD /iwbep/if_mgw_appl_srv_runtime~get_entityset.
-
-
-    DATA produtoset_get_entityset TYPE zcl_zmercado_mpc=>tt_produto.
-    DATA lv_entityset_name TYPE string.
-
-    lv_entityset_name = io_tech_request_context->get_entity_set_name( ).
-
-    CASE lv_entityset_name.
-*-------------------------------------------------------------------------*
-*             EntitySet -  ProdutoSet
-*-------------------------------------------------------------------------*
-      WHEN 'ProdutoSet'.
-*     Chamar método criado manualmente
-        produtoset_get_entityset(
-          EXPORTING
-           iv_entity_name = iv_entity_name
-           iv_entity_set_name = iv_entity_set_name
-           iv_source_name = iv_source_name
-           it_filter_select_options = it_filter_select_options
-           it_order = it_order
-           is_paging = is_paging
-           it_navigation_path = it_navigation_path
-           it_key_tab = it_key_tab
-           iv_filter_string = iv_filter_string
-           iv_search_string = iv_search_string
-           io_tech_request_context = io_tech_request_context
-         IMPORTING
-           et_entityset = produtoset_get_entityset
-           es_response_context = es_response_context
-         ).
-*     Send specific entity data to the caller interface
-        copy_data_to_ref(
-          EXPORTING
-            is_data = produtoset_get_entityset
-          CHANGING
-            cr_data = er_entityset
-        ).
-
-*-------------------------------------------------------------------------*
-*             EntitySet -  Super
-*-------------------------------------------------------------------------*
-      WHEN OTHERS.
-
-*     Chamar métodos criados automaticamente
-
-        CALL METHOD super->/iwbep/if_mgw_appl_srv_runtime~get_entityset
-          EXPORTING
-            iv_entity_name           = iv_entity_name
-            iv_entity_set_name       = iv_entity_set_name
-            iv_source_name           = iv_source_name
-            it_filter_select_options = it_filter_select_options
-            it_order                 = it_order
-            is_paging                = is_paging
-            it_navigation_path       = it_navigation_path
-            it_key_tab               = it_key_tab
-            iv_filter_string         = iv_filter_string
-            iv_search_string         = iv_search_string
-            io_tech_request_context  = io_tech_request_context
-          IMPORTING
-            er_entityset             = er_entityset
-            es_response_context      = es_response_context.
-
-
-    ENDCASE.
-  ENDMETHOD.
-
-
-* <SIGNATURE>---------------------------------------------------------------------------------------+
-* | Instance Protected Method ZCL_ZMERCADO_DPC_EXT->PRODUTOSET_GET_ENTITYSET
-* +-------------------------------------------------------------------------------------------------+
-* | [--->] IV_ENTITY_NAME                 TYPE        STRING
-* | [--->] IV_ENTITY_SET_NAME             TYPE        STRING
-* | [--->] IV_SOURCE_NAME                 TYPE        STRING
-* | [--->] IT_FILTER_SELECT_OPTIONS       TYPE        /IWBEP/T_MGW_SELECT_OPTION
-* | [--->] IS_PAGING                      TYPE        /IWBEP/S_MGW_PAGING
-* | [--->] IT_KEY_TAB                     TYPE        /IWBEP/T_MGW_NAME_VALUE_PAIR
-* | [--->] IT_NAVIGATION_PATH             TYPE        /IWBEP/T_MGW_NAVIGATION_PATH
-* | [--->] IT_ORDER                       TYPE        /IWBEP/T_MGW_SORTING_ORDER
-* | [--->] IV_FILTER_STRING               TYPE        STRING
-* | [--->] IV_SEARCH_STRING               TYPE        STRING
-* | [--->] IO_TECH_REQUEST_CONTEXT        TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITYSET(optional)
-* | [<---] ET_ENTITYSET                   TYPE        ZCL_ZMERCADO_MPC=>TT_PRODUTO
-* | [<---] ES_RESPONSE_CONTEXT            TYPE        /IWBEP/IF_MGW_APPL_SRV_RUNTIME=>TY_S_MGW_RESPONSE_CONTEXT
-* | [!CX!] /IWBEP/CX_MGW_BUSI_EXCEPTION
-* | [!CX!] /IWBEP/CX_MGW_TECH_EXCEPTION
-* +--------------------------------------------------------------------------------------</SIGNATURE>
-  METHOD produtoset_get_entityset.
-
-    SELECT mara~matnr AS id,
-          mara~meins AS unidade_medida,
-          makt~maktx AS descricao
-      INTO CORRESPONDING FIELDS OF TABLE @et_entityset
-      FROM mara INNER JOIN makt
-      ON mara~matnr EQ makt~matnr
-      WHERE makt~spras EQ @sy-langu.
 
   ENDMETHOD.
 
