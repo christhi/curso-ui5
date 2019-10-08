@@ -4,11 +4,148 @@ class ZCL_ZMERCADO_DPC_EXT definition
   create public .
 
 public section.
+
+  methods /IWBEP/IF_MGW_APPL_SRV_RUNTIME~GET_ENTITY
+    redefinition .
 protected section.
+
+  methods VENDASET_GET_ENTITYSET
+    redefinition .
 private section.
 ENDCLASS.
 
 
 
 CLASS ZCL_ZMERCADO_DPC_EXT IMPLEMENTATION.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Public Method ZCL_ZMERCADO_DPC_EXT->/IWBEP/IF_MGW_APPL_SRV_RUNTIME~GET_ENTITY
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_ENTITY_NAME                 TYPE        STRING(optional)
+* | [--->] IV_ENTITY_SET_NAME             TYPE        STRING(optional)
+* | [--->] IV_SOURCE_NAME                 TYPE        STRING(optional)
+* | [--->] IT_KEY_TAB                     TYPE        /IWBEP/T_MGW_NAME_VALUE_PAIR(optional)
+* | [--->] IT_NAVIGATION_PATH             TYPE        /IWBEP/T_MGW_NAVIGATION_PATH(optional)
+* | [--->] IO_TECH_REQUEST_CONTEXT        TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITY(optional)
+* | [<---] ER_ENTITY                      TYPE REF TO DATA
+* | [<---] ES_RESPONSE_CONTEXT            TYPE        /IWBEP/IF_MGW_APPL_SRV_RUNTIME=>TY_S_MGW_RESPONSE_ENTITY_CNTXT
+* | [!CX!] /IWBEP/CX_MGW_BUSI_EXCEPTION
+* | [!CX!] /IWBEP/CX_MGW_TECH_EXCEPTION
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD /iwbep/if_mgw_appl_srv_runtime~get_entity.
+
+    DATA clienteset_get_entity TYPE zcl_zloja_mpc=>ts_cliente.
+    DATA clienteset_get_ext TYPE zcl_zmercado_mpc=>ts_cliente.
+
+    DATA lv_entityset_name TYPE string.
+    DATA lr_entity TYPE REF TO data.                        "#EC NEEDED
+
+    lv_entityset_name = io_tech_request_context->get_entity_set_name( ).
+
+    CASE lv_entityset_name.
+*-------------------------------------------------------------------------*
+*             EntitySet -  ClienteSet
+*-------------------------------------------------------------------------*
+      WHEN 'ClienteSet'.
+*     Call the entity set generated method
+        clienteset_get_entity(
+             EXPORTING iv_entity_name     = iv_entity_name
+                       iv_entity_set_name = iv_entity_set_name
+                       iv_source_name     = iv_source_name
+                       it_key_tab         = it_key_tab
+                       it_navigation_path = it_navigation_path
+                       io_tech_request_context = io_tech_request_context
+           	 IMPORTING er_entity          = clienteset_get_entity
+                       es_response_context = es_response_context
+        ).
+
+        IF clienteset_get_entity IS NOT INITIAL.
+
+***********************************************************************
+*********Adicionar codigo customizado para preenchimento do campo adicional
+********* pode ser criado novo metodo na classe DPC_EXT importando e exportando as estruturas
+          MOVE-CORRESPONDING clienteset_get_entity TO clienteset_get_ext.
+          clienteset_get_ext-endereco = 'Rua da Paz Bairro Cachoeira'.
+***********************************************************************
+
+*     Send specific entity data to the caller interface
+          copy_data_to_ref(
+            EXPORTING
+              is_data = clienteset_get_ext "***INFORMAR AQUI A ESTRUTURA ESTENDIDA
+            CHANGING
+              cr_data = er_entity
+          ).
+        ELSE.
+*         In case of initial values - unbind the entity reference
+          er_entity = lr_entity.
+        ENDIF.
+*-------------------------------------------------------------------------*
+*             EntitySet -  VendaSet
+*-------------------------------------------------------------------------*
+      WHEN OTHERS.
+
+
+        CALL METHOD super->/iwbep/if_mgw_appl_srv_runtime~get_entity
+          EXPORTING
+            iv_entity_name          = iv_entity_name
+            iv_entity_set_name      = iv_entity_set_name
+            iv_source_name          = iv_source_name
+            it_key_tab              = it_key_tab
+            it_navigation_path      = it_navigation_path
+            io_tech_request_context = io_tech_request_context
+          IMPORTING
+            er_entity               = er_entity
+            es_response_context     = es_response_context.
+
+    ENDCASE.
+
+  ENDMETHOD.
+
+
+* <SIGNATURE>---------------------------------------------------------------------------------------+
+* | Instance Protected Method ZCL_ZMERCADO_DPC_EXT->VENDASET_GET_ENTITYSET
+* +-------------------------------------------------------------------------------------------------+
+* | [--->] IV_ENTITY_NAME                 TYPE        STRING
+* | [--->] IV_ENTITY_SET_NAME             TYPE        STRING
+* | [--->] IV_SOURCE_NAME                 TYPE        STRING
+* | [--->] IT_FILTER_SELECT_OPTIONS       TYPE        /IWBEP/T_MGW_SELECT_OPTION
+* | [--->] IS_PAGING                      TYPE        /IWBEP/S_MGW_PAGING
+* | [--->] IT_KEY_TAB                     TYPE        /IWBEP/T_MGW_NAME_VALUE_PAIR
+* | [--->] IT_NAVIGATION_PATH             TYPE        /IWBEP/T_MGW_NAVIGATION_PATH
+* | [--->] IT_ORDER                       TYPE        /IWBEP/T_MGW_SORTING_ORDER
+* | [--->] IV_FILTER_STRING               TYPE        STRING
+* | [--->] IV_SEARCH_STRING               TYPE        STRING
+* | [--->] IO_TECH_REQUEST_CONTEXT        TYPE REF TO /IWBEP/IF_MGW_REQ_ENTITYSET(optional)
+* | [<---] ET_ENTITYSET                   TYPE        ZCL_ZLOJA_MPC=>TT_VENDA
+* | [<---] ES_RESPONSE_CONTEXT            TYPE        /IWBEP/IF_MGW_APPL_SRV_RUNTIME=>TY_S_MGW_RESPONSE_CONTEXT
+* | [!CX!] /IWBEP/CX_MGW_BUSI_EXCEPTION
+* | [!CX!] /IWBEP/CX_MGW_TECH_EXCEPTION
+* +--------------------------------------------------------------------------------------</SIGNATURE>
+  METHOD vendaset_get_entityset.
+
+    CALL METHOD super->vendaset_get_entityset
+      EXPORTING
+        iv_entity_name           = iv_entity_name
+        iv_entity_set_name       = iv_entity_set_name
+        iv_source_name           = iv_source_name
+        it_filter_select_options = it_filter_select_options
+        is_paging                = is_paging
+        it_key_tab               = it_key_tab
+        it_navigation_path       = it_navigation_path
+        it_order                 = it_order
+        iv_filter_string         = iv_filter_string
+        iv_search_string         = iv_search_string
+        io_tech_request_context  = io_tech_request_context
+      IMPORTING
+        et_entityset             = et_entityset
+        es_response_context      = es_response_context.
+
+
+************************************
+****Depois de chamar o metodo da superclasse,
+****adicionar  logica especifica para o novo campo
+************************************
+
+  ENDMETHOD.
 ENDCLASS.
