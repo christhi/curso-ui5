@@ -48,6 +48,19 @@
                 <NavigationProperty Name="cliente" Relationship="ZLOJA_SRV.VendaToCliente"
                     FromRole="FromRole_VendaToCliente" ToRole="ToRole_VendaToCliente" sap:label="Cliente" />
             </EntityType>
+            <EntityType Name="Fornecedor" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID" />
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="" sap:creatable="false"
+                    sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Nome" Type="Edm.String" Nullable="false" MaxLength="35" sap:label="Nome"
+                    sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Endereco" Type="Edm.String" Nullable="false" MaxLength="35" sap:label="Endereço"
+                    sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="UF" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="UF"
+                    sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+            </EntityType>
             <Association Name="VendaToCliente" sap:content-version="1">
                 <End Type="ZLOJA_SRV.Venda" Multiplicity="1" Role="FromRole_VendaToCliente" />
                 <End Type="ZLOJA_SRV.Cliente" Multiplicity="1" Role="ToRole_VendaToCliente" />
@@ -58,6 +71,9 @@
             </Association>
             <EntityContainer Name="ZLOJA_SRV_Entities" m:IsDefaultEntityContainer="true"
                 sap:supported-formats="atom json xlsx">
+                <EntitySet Name="FornecedorSet" EntityType="ZLOJA_SRV.Fornecedor" sap:creatable="false"
+                    sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false"
+                    sap:content-version="1" />
                 <EntitySet Name="ClienteSet" EntityType="ZLOJA_SRV.Cliente" sap:creatable="false" sap:updatable="false"
                     sap:deletable="false" sap:pageable="false" sap:content-version="1" />
                 <EntitySet Name="VendaSet" EntityType="ZLOJA_SRV.Venda" sap:creatable="false" sap:updatable="false"
