@@ -1,0 +1,86 @@
+{
+  "projectType": [
+    "com.watt.commonbuilder.sapui5clientbuild",
+    "sap.watt.uitools.ide.fiori"
+  ],
+  "generation": [
+    {
+      "templateId": "fioriexttemplate.extensionProject",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Tue, 08 Oct 2019 21:53:12 GMT"
+    }
+  ],
+  "translation": {
+    "translationDomain": "",
+    "supportedLanguages": "en,fr,de",
+    "defaultLanguage": "en",
+    "defaultI18NPropertyFile": "i18n.properties",
+    "resourceModelName": "i18n"
+  },
+  "extensibility": {
+    "controllers": {
+      "DetalhesVenda": "Z_CRISTIANO_WT%2fcontroller%2fDetalhesVenda.controller.js",
+      "Home": "Z_CRISTIANO_WT%2fcontroller%2fHome.controller.js",
+      "NotFound": "Z_CRISTIANO_WT%2fcontroller%2fNotFound.controller.js"
+    },
+    "views": {
+      "App": "Z_CRISTIANO_WT%2fview%2fApp.view.xml",
+      "DetalhesVenda": "Z_CRISTIANO_WT%2fview%2fDetalhesVenda.view.xml",
+      "Home": "Z_CRISTIANO_WT%2fview%2fHome.view.xml",
+      "NotFound": "Z_CRISTIANO_WT%2fview%2fNotFound.view.xml"
+    },
+    "fragments": {
+      "ListaProdutos": "Z_CRISTIANO_WT%2fview%2fListaProdutos.fragment.xml",
+      "ListaVendas": "Z_CRISTIANO_WT%2fview%2fListaVendas.fragment.xml"
+    },
+    "type": "abaprep",
+    "shouldLinkComponentToManifest": true,
+    "component": "Z_CRISTIANO_WT%2fComponent.js",
+    "manifest": "Z_CRISTIANO_WT%2fmanifest.json",
+    "minUI5Version": "1.60",
+    "system": {
+      "name": "S4H",
+      "description": "S4H Cromos IT",
+      "proxyUrlPrefix": "/webidedispatcher/destinations/S4H",
+      "path": "/sap/bc/adt",
+      "url": "/webidedispatcher/destinations/S4H/sap/bc/adt",
+      "wattUsage": "dev_abap",
+      "systemId": "S4H",
+      "entryPath": "/sap/bc/adt",
+      "sapClient": "216",
+      "additionalData": []
+    },
+    "discoveryStatus": {
+      "csrfToken": "-CbxVtTwF9uTHZ_D_fGQxQ==",
+      "transports": "/webidedispatcher/destinations/S4H/sap/bc/adt/cts/transports",
+      "transportchecks": "/webidedispatcher/destinations/S4H/sap/bc/adt/cts/transportchecks",
+      "filestore_ui5_bsp": "/webidedispatcher/destinations/S4H/sap/bc/adt/filestore/ui5-bsp/objects",
+      "search": "/webidedispatcher/destinations/S4H/sap/bc/adt/repository/informationsystem/search",
+      "ato_settings": "/webidedispatcher/destinations/S4H/sap/bc/adt/ato/settings",
+      "ui5_rt_version": "/webidedispatcher/destinations/S4H/sap/bc/adt/filestore/ui5-bsp/ui5-rt-version",
+      "description": "S4H Cromos IT",
+      "proxyUrlPrefix": "/webidedispatcher/destinations/S4H"
+    },
+    "BSPName": "Z_CRISTIANO_WT",
+    "namespace": "cristiano.cromos.it.walkthrough",
+    "resourceBundle": "i18n/i18n.properties",
+    "parentResourceRootUrl": "/destinations/S4H/sap/bc/ui5_ui5/sap/Z_CRISTIANO_WT"
+  },
+  "basevalidator": {
+    "services": {
+      "xml": "fioriXmlAnalysis",
+      "js": "fioriJsValidator"
+    }
+  },
+  "codeCheckingTriggers": {
+    "notifyBeforePush": true,
+    "notifyBeforePushLevel": "Error",
+    "blockPush": false,
+    "blockPushLevel": "Error"
+  },
+  "build": {
+    "targetFolder": "dist",
+    "sourceFolder": "webapp",
+    "buildRequired": true
+  }
+}
