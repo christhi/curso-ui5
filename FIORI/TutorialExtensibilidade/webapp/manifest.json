@@ -56,6 +56,14 @@
 						"viewName": "cristiano.cromos.it.walkthrough.Z_CRISTIANO_WTExtension.view.DetalhesVendaCustom",
 						"type": "XML"
 					}
+				},
+				"sap.ui.controllerReplacements": {
+					"cristiano.cromos.it.walkthrough.controller.Home": {
+						"controllerName": "cristiano.cromos.it.walkthrough.Z_CRISTIANO_WTExtension.controller.HomeCustom"
+					},
+					"cristiano.cromos.it.walkthrough.controller.DetalhesVenda": {
+						"controllerName": "cristiano.cromos.it.walkthrough.Z_CRISTIANO_WTExtension.controller.DetalhesVendaCustom"
+					}
 				}
 			}
 		},
