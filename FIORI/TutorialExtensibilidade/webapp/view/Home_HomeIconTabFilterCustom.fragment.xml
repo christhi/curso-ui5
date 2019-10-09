@@ -1,0 +1,51 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc">
+	<!-- This extension point can be used to add fields to items -->
+	<IconTabFilter xmlns="sap.m" text="Fornecedores" key="key4">
+        <content>
+          <Table id="idFornecedoresTable"
+		inset="false"
+		items="{
+			path: '/FornecedorSet'
+		}">
+		
+		<columns>
+			<Column demandPopin="true"
+				width="12em">
+				<Text text="Fornecedor" />
+			</Column>
+			<Column minScreenWidth="Desktop"
+				demandPopin="true"
+				width="20em">
+				<Text text="Nome" />
+			</Column>
+			<Column 
+				demandPopin="true">
+				<Text text="Endereço" />
+			</Column>
+			<Column
+				demandPopin="true"
+				hAlign="End">
+				<Text text="UF" />
+			</Column>
+			
+			
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<ObjectIdentifier
+						title="{ID}"/>
+					<Text
+						text="{Nome}" />
+					<Text
+						text="{Endereco}" />
+					<Text
+						text="{UF}" />
+					
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+        </content>
+      </IconTabFilter> 
+</core:FragmentDefinition>
