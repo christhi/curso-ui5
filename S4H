@@ -1,0 +1,11 @@
+Description=S4H Cromos IT
+Type=HTTP
+TrustAll=true
+Authentication=NoAuthentication
+Name=S4H
+ProxyType=Internet
+URL=http://inove-s4hana.opustech.com.br:8001
+WebIDEUsage=odata_abap,odata_gen,dev_abap,ui5_execute_abap
+WebIDESystem=S4H
+WebIDEEnabled=true
+sap-client=216
